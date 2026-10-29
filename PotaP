@@ -1,0 +1,30 @@
+users = {
+    "student1": {"password": "123", "grades": [10, 8, 4, 12, 3, 9]},
+    "student2": {"password": "pass2", "grades": [5, 6, 7, 5, 8]},
+    "student3": {"password": "qwerty", "grades": [2, 3, 4, 1, 4]},
+    "student4": {"password": "admin", "grades": [11, 12, 10, 9, 12, 8]}
+}
+
+print("=== Вхід у систему оцінок ===")
+login = input("Введіть логін: ")
+password = input("Введіть пароль: ")
+
+if login in users and users[login]["password"] == password:
+    grades = users[login]["grades"]
+    print(f"\nУспішний вхід! Учень: {login}")
+    print("Ваші оцінки:", *grades)
+
+    satisfactory = 0
+    unsatisfactory = 0
+
+    for grade in grades:
+        if 5 <= grade <= 12:
+            satisfactory += 1
+        elif 1 <= grade <= 4:
+            unsatisfactory += 1
+
+    print("-" * 35)
+    print(f"Задовільні оцінки (5-12): {satisfactory}")
+    print(f"Незадовільні оцінки (1-4): {unsatisfactory}")
+else:
+    print("\nПомилка: Невірний логін або пароль!")
